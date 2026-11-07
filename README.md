@@ -36,3 +36,10 @@ Sem token, o cliente MP retorna **checkout mock** para desenvolvimento.
 ## Compensações
 
 Falha ao buscar itens da OS → publica `budget.creation_failed` (OS libera estoque).
+
+## Infraestrutura
+
+- `infra-db/` — RDS `oficina_billing`
+- `infra-k8s/manifests/app/` — Deploy Kubernetes
+
+Stack local: [`../oficina-os-service/docker-compose.stack.yml`](../oficina-os-service/docker-compose.stack.yml)
