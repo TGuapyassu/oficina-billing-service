@@ -1,0 +1,49 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [homolog, main]
+  pull_request:
+    branches: [homolog, main]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  validate:
+    name: Terraform validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+      - name: Init e validate (homolog)
+        working-directory: environments/homolog
+        run: |
+          terraform init -backend=false
+          terraform validate
+      - name: Fmt check
+        run: terraform fmt -check -recursive
+
+  apply:
+    name: Terraform apply
+    needs: validate
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/homolog' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'prod' || 'homolog' }}
+    defaults:
+      run:
+        working-directory: ${{ github.ref_name == 'main' && 'environments/prod' || 'environments/homolog' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
+      - run: terraform init
+      - run: terraform apply -auto-approve
