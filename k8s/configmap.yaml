@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oficina-billing-config
+  namespace: oficina
+data:
+  APP_ENV: production
+  OS_SERVICE_URL: "http://oficina-os-service.oficina.svc"
+  PUBLIC_BASE_URL: "https://billing.example.com"
+  DD_SERVICE: oficina-billing-service
+  DD_TRACE_ENABLED: "true"

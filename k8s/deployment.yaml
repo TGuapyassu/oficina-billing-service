@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oficina-billing-service
+  namespace: oficina
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: oficina-billing-service
+  template:
+    metadata:
+      labels:
+        app: oficina-billing-service
+    spec:
+      containers:
+        - name: api
+          image: oficina-billing-service:latest
+          ports:
+            - containerPort: 8003
+          envFrom:
+            - configMapRef:
+                name: oficina-billing-config
+            - secretRef:
+                name: oficina-billing-secrets
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8003
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8003
