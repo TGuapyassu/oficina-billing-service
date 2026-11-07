@@ -36,4 +36,15 @@ include = ["app*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
-addopts = "-q --tb=short --cov=app --cov-report=term-missing --cov-fail-under=80"
+addopts = "-q --tb=short --cov=app --cov-report=term-missing --cov-report=html:docs/evidencias/htmlcov --cov-fail-under=80"
+
+[tool.coverage.run]
+omit = [
+  "app/**/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if __name__ == .__main__.:",
+]

@@ -13,10 +13,10 @@ def test_cria_orcamento_via_evento():
     def fetch(_os_id: int) -> dict:
         return {"valor_total": "200.00"}
 
-    ev = DomainEvent.create(RoutingKey.EXECUTION_DIAGNOSIS_COMPLETED, os_id=7)
+    ev = DomainEvent.create(RoutingKey.EXECUTION_DIAGNOSIS_COMPLETED, os_id=701)
     handle_event(session, ev.model_dump_json().encode(), fetch)
     session.commit()
-    o = get_orcamento_by_os(session, 7)
+    o = get_orcamento_by_os(session, 701)
     assert o is not None
     assert o.valor_total == Decimal("200.00")
     session.close()

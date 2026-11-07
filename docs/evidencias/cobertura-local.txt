@@ -1,0 +1,26 @@
+............                                                             [100%]
+=============================== warnings summary ===============================
+../../../../../tmp/pos-test-venv/lib/python3.12/site-packages/ddtrace/internal/module.py:305
+  /tmp/pos-test-venv/lib/python3.12/site-packages/ddtrace/internal/module.py:305: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    self.loader.exec_module(module)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name                                   Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------
+app/application/billing_handlers.py       28      5    82%   24, 26, 31-41
+app/domain/orcamento.py                   27      1    96%   31
+app/infrastructure/db.py                  56      4    93%   45-47, 54
+app/infrastructure/mercado_pago.py        21      3    86%   41-43
+app/infrastructure/messaging.py           52     31    40%   20-25, 32-63
+app/infrastructure/mongo_webhooks.py      31     12    61%   16-17, 22, 27-30, 35-39
+app/infrastructure/publisher.py           14      5    64%   15-24
+app/main.py                               94      3    97%   76, 112, 143
+app/settings.py                           16      0   100%
+--------------------------------------------------------------------
+TOTAL                                    339     64    81%
+Coverage HTML written to dir docs/evidencias/htmlcov
+Required test coverage of 80% reached. Total coverage: 81.12%
+12 passed, 1 warning in 0.85s

@@ -1,0 +1,30 @@
+{
+  "info": {
+    "name": "Billing Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:8003" }],
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "url": "{{baseUrl}}/health" }
+    },
+    {
+      "name": "Ready",
+      "request": { "method": "GET", "url": "{{baseUrl}}/ready" }
+    },
+    {
+      "name": "Orçamento por OS",
+      "request": { "method": "GET", "url": "{{baseUrl}}/orcamentos/os/1" }
+    },
+    {
+      "name": "Decisão orçamento",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"aprovado\": true\n}" },
+        "url": "{{baseUrl}}/orcamentos/os/1/decisao"
+      }
+    }
+  ]
+}

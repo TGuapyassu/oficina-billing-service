@@ -10,7 +10,8 @@ from pydantic import BaseModel
 from app.domain.orcamento import OrcamentoStatus
 from app.infrastructure.db import PagamentoOrm, get_orcamento_by_os, get_session_factory, init_db, save_orcamento
 from app.infrastructure.mercado_pago import MercadoPagoClient
-from app.infrastructure.messaging import publish, start_consumer
+from app.infrastructure.messaging import start_consumer
+from app.infrastructure.publisher import publish
 from app.infrastructure.mongo_webhooks import WebhookStore
 from app.settings import get_settings
 from oficina_contracts.events import DomainEvent

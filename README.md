@@ -4,7 +4,18 @@
 
 ## Cobertura
 
-`pytest --cov-report=html` · artefato **coverage-report** no CI · [`docs/evidencias/`](docs/evidencias/)
+```bash
+pip install -e ".[dev]"   # requer oficina-contracts
+pytest
+```
+
+Evidência local (≥80%): [`docs/evidencias/cobertura-local.txt`](docs/evidencias/cobertura-local.txt) · resumo visual [`cobertura-resumo.svg`](docs/evidencias/cobertura-resumo.svg) · HTML em `docs/evidencias/htmlcov/` após o `pytest`. CI: artefato **coverage-report**.
+
+## API (Swagger)
+
+Com a stack local no ar: **http://localhost:8003/docs** (OpenAPI / Redoc em `/redoc`).
+
+Fluxo integrado Saga (Postman no repo OS): ver seção **Postman** abaixo.
 
 ## Documentação
 
@@ -43,3 +54,8 @@ Falha ao buscar itens da OS → publica `budget.creation_failed` (OS libera esto
 - `infra-k8s/manifests/app/` — Deploy Kubernetes
 
 Stack local: [`../oficina-os-service/docker-compose.stack.yml`](../oficina-os-service/docker-compose.stack.yml)
+
+## Postman
+
+Collection mínima deste serviço: [`docs/postman/oficina-billing-service.postman_collection.json`](docs/postman/oficina-billing-service.postman_collection.json).  
+Fluxo E2E Saga: [`../oficina-os-service/docs/postman/oficina-fase4-microservices.postman_collection.json`](../oficina-os-service/docs/postman/oficina-fase4-microservices.postman_collection.json).

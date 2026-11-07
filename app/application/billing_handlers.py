@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 from app.domain.orcamento import Orcamento
 from app.infrastructure.db import get_orcamento_by_os, save_orcamento
-from app.infrastructure.messaging import publish
+from app.infrastructure.publisher import publish
 from oficina_contracts.events import DomainEvent
 from oficina_contracts.routing import RoutingKey
 

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="100">
+  <rect width="380" height="100" fill="#f6f8fa"/>
+  <text x="16" y="28" font-family="sans-serif" font-size="14" font-weight="bold">oficina-billing-service — cobertura local</text>
+  <text x="16" y="58" font-family="sans-serif" font-size="26" fill="#116329">81,12%</text>
+  <text x="16" y="82" font-family="sans-serif" font-size="12">pytest · meta ≥80% · htmlcov/index.html</text>
+</svg>
